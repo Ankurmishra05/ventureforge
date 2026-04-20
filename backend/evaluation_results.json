@@ -1,0 +1,26 @@
+[
+  {
+    "idea": "AI resume coach",
+    "latency": 1.52,
+    "quality_score": 10,
+    "provider": "mixed:Groq, unknown"
+  },
+  {
+    "idea": "AI tax assistant",
+    "latency": 0.89,
+    "quality_score": 10,
+    "provider": "mixed:Groq, unknown"
+  },
+  {
+    "idea": "Mental wellness app",
+    "latency": 0.85,
+    "quality_score": 10,
+    "provider": "mixed:Groq, unknown"
+  },
+  {
+    "idea": "SaaS for restaurants",
+    "latency": 1.12,
+    "quality_score": 8,
+    "provider": "mixed:Groq, unknown"
+  }
+]
