@@ -1,200 +1,200 @@
 # VentureForge
 
-VentureForge is an AI-powered platform designed to help early-stage founders turn raw startup ideas into structured, actionable business plans.
+VentureForge is a hybrid `GenAI + ML` startup intelligence platform. It combines a multi-agent LLM workflow for startup brief generation with supervised ML models trained on real Crunchbase-style startup event data for `future funding` and `exit` prediction.
 
-Instead of relying on generic text generation, VentureForge uses multiple specialized AI agents to evaluate an idea from different business angles—market demand, branding, monetization, and strategic viability.
+## What It Does
 
-The goal is simple: help founders move faster from idea to decision.
+- Generates startup research, branding, finance, and decision outputs through a multi-step LLM workflow
+- Trains temporal startup outcome models on real multi-table startup data
+- Serves authenticated prediction APIs for startup scoring
+- Exposes both the GenAI workflow and the ML scoring flow through a Next.js dashboard
 
----
+## Project Angles
 
-# What It Does
+This project is strongest when positioned as:
 
-A user enters:
+- a `hybrid GenAI + predictive ML system`
+- a `multi-agent LLM application with model-based decision support`
+- a `full-stack ML product` with data engineering, benchmarking, and API serving
 
-* Startup idea
-* Target audience
+## Architecture
 
-The platform then generates:
+### Backend
 
-* Market research summary
-* Target audience insights
-* Pain points analysis
-* Startup name and tagline
-* Brand tone suggestions
-* Revenue model and projections
-* AI strategic verdict (Build / Pivot / Avoid)
-* Risk score
-* Revenue chart
-* Exportable reports
-* Saved generation history
+- `FastAPI` for authenticated API routes
+- `SQLAlchemy` + `Alembic` for persistence
+- `JWT` auth for protected routes
+- `Groq`, `OpenRouter`, and `Ollama` support for LLM provider orchestration
 
----
+### GenAI / Agentic Workflow
 
-# Why I Built It
+The startup brief pipeline orchestrates:
 
-A lot of startup tools can generate content, but very few help with actual decision-making.
+- `research agent`
+- `branding agent`
+- `finance agent`
+- `decision agent`
 
-I wanted to build something that feels closer to a founder’s co-pilot—something that doesn’t just write outputs, but helps evaluate whether an idea is worth pursuing and how it could be improved.
+These run through a shared orchestration flow and return structured outputs through the API.
 
----
+### ML / DS Pipeline
 
-# How It Works
+The ML side is built on the Kaggle `Startup Investments` dataset and includes:
 
-VentureForge uses a multi-agent architecture where each component has a focused role.
+- multi-table ingestion from raw Crunchbase-style CSVs
+- company-level feature generation
+- early-stage snapshot features from the first `730` days after founding
+- temporal train/validation/test evaluation
+- threshold tuning
+- probability calibration
+- slice-based error analysis
 
-### Research Agent
+## Dataset
 
-Looks at market need, user pain points, and opportunity potential.
+Source dataset:
 
-### Branding Agent
+- Kaggle `Startup Investments`: https://www.kaggle.com/datasets/justinas/startup-investments
 
-Generates names, taglines, and positioning ideas.
+Raw CSVs should be placed in:
 
-### Finance Agent
+- `data/raw/startup-investments/`
 
-Creates monetization strategy, pricing, and early revenue estimates.
+Expected important files:
 
-### Decision Agent
+- `objects.csv`
+- `funding_rounds.csv`
+- `investments.csv`
+- `acquisitions.csv`
+- `ipos.csv`
 
-Provides a final recommendation:
+Raw CSVs are intentionally ignored from Git.
 
-* Build
-* Pivot
-* Avoid
+## Core Prediction Tasks
 
-Along with reasoning and a risk score.
+- `future_funding`: whether a startup raises funding after the first 730 days
+- `exit`: whether a startup eventually reaches acquisition or IPO
 
----
+## Best Current Benchmark
 
-# Tech Stack
+Best current model:
 
-## Frontend
+- `XGBoost` on the `future_funding` task
 
-* Next.js
-* TypeScript
-* Tailwind CSS
-* Framer Motion
+Current temporal holdout metrics:
 
-## Backend
+- ROC-AUC: `0.848`
+- PR-AUC: `0.3211`
+- Precision: `0.2705`
+- Recall: `0.5016`
+- F1: `0.3514`
+- Decision threshold: `0.27`
 
-* FastAPI
-* Python
-* SQLAlchemy
-* Alembic
-* PostgreSQL
+This model is also wired into the backend prediction endpoint.
 
-## AI & Infrastructure
+## Important Files
 
-* Groq
-* OpenRouter
-* Ollama
-* JWT Authentication
-* GitHub
+### Data and Training
 
----
+- [backend/scripts/prepare_startup_dataset.py](backend/scripts/prepare_startup_dataset.py)
+- [backend/scripts/train_outcome_benchmarks.py](backend/scripts/train_outcome_benchmarks.py)
+- [backend/scripts/generate_benchmark_report.py](backend/scripts/generate_benchmark_report.py)
+- [backend/scripts/generate_portfolio_writeup.py](backend/scripts/generate_portfolio_writeup.py)
 
-# Key Features
+### Model Serving
 
-* Secure signup/login system
-* Protected dashboard
-* Real-time startup generation
-* Confidence scoring normalization
-* Saved history in PostgreSQL
-* PDF export
-* Pitch deck export
-* Evaluation script for benchmarking
-* Ready for CI/CD and cloud deployment
+- [backend/app/services/outcome_model.py](backend/app/services/outcome_model.py)
+- [backend/app/api/routes/predictions.py](backend/app/api/routes/predictions.py)
 
----
+### Reports
 
-# Example Use Case
+- [docs/model-benchmark-report.md](docs/model-benchmark-report.md)
+- [docs/portfolio-case-study.md](docs/portfolio-case-study.md)
 
-### Input
+## How To Run
 
-Idea: AI Resume Coach
-Audience: Job Seekers
+### Backend
 
-### Output
+From `backend/`:
 
-* Startup Name: ResumeGenie
-* Verdict: Build
-* Risk Score: 30%
-* Freemium Revenue Model
-* Strategic expansion suggestions
-
----
-
-# Local Setup
-
-## Clone the repository
-
-```bash id="1yajlo"
-git clone https://github.com/Ankurmishra05/ventureforge.git
-cd ventureforge
+```bash
+python -m uvicorn app.main:app --reload
 ```
 
-## Backend
+### Frontend
 
-```bash id="pb53vd"
-cd backend
-pip install -r requirements.txt
-uvicorn app.main:app --reload
-```
+From `frontend/`:
 
-## Frontend
-
-```bash id="e3hy4s"
-cd frontend
+```bash
 npm install
 npm run dev
 ```
 
----
+### Build the Dataset
 
-# Environment Variables
-
-Create a `.env` file inside the backend folder:
-
-```env id="ncz4v0"
-GROQ_API_KEY=your_key
-OPENROUTER_API_KEY=your_key
-OLLAMA_URL=http://localhost:11434
-DATABASE_URL=your_postgresql_url
-SECRET_KEY=your_secret
+```bash
+python backend/scripts/prepare_startup_dataset.py
 ```
 
----
+### Run Benchmarks
 
-# What I Learned Building This
+```bash
+python backend/scripts/train_outcome_benchmarks.py --task all
+python backend/scripts/generate_benchmark_report.py
+python backend/scripts/generate_portfolio_writeup.py
+```
 
-This project involved much more than model APIs. It required solving real product problems:
+## API Endpoints
 
-* authentication flows
-* database persistence
-* frontend/backend integration
-* schema validation
-* output consistency
-* evaluation metrics
-* user experience design
+### Generate startup brief
 
-It was a strong exercise in building an end-to-end AI product instead of just a model demo.
+- `POST /generate-startup`
 
----
+### Predict future funding
 
-# Roadmap
+- `POST /predictions/future-funding`
 
-* Live deployment
-* CI/CD automation
-* Real-time market signals
-* Team workspaces
-* Advanced analytics
-* A/B testing across models
+Example payload:
 
----
+```json
+{
+  "founded_year": 2010,
+  "category": "enterprise",
+  "country": "USA",
+  "state": "CA",
+  "city": "San Francisco",
+  "description": "Workflow automation software for mid-market finance teams",
+  "early_latest_round_type": "series_a",
+  "early_num_funding_rounds": 2,
+  "early_total_raised_usd": 3500000,
+  "early_avg_raised_usd": 1750000,
+  "early_max_raised_usd": 2500000,
+  "early_avg_participants": 3,
+  "early_max_participants": 4
+}
+```
 
-# Author
+## Smoke Test Status
 
-Ankur Mishra
+Verified locally in this workspace:
 
-If you’d like to connect, collaborate, or discuss the project, feel free to reach out.
+- backend startup succeeded
+- auth registration succeeded
+- protected prediction endpoint returned valid results
+- frontend lint passed
+- frontend TypeScript check passed
+
+Next.js `build` and `dev` process startup were blocked in this environment by Windows sandbox `spawn EPERM`, so browser-level verification was partially environment-limited rather than code-limited.
+
+## CV Positioning
+
+Good positioning:
+
+- `Hybrid GenAI + ML startup intelligence platform`
+- `Multi-agent LLM workflow with calibrated startup outcome prediction`
+- `Full-stack ML product with temporal benchmarking and model serving`
+
+Avoid overstating it as:
+
+- fully autonomous agent system
+- production-grade AGI agent
+- state-of-the-art startup prediction engine

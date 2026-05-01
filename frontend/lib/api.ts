@@ -2,6 +2,8 @@ import axios from "axios";
 
 import type {
   AuthResponse,
+  FutureFundingPredictionRequest,
+  FutureFundingPredictionResponse,
   LoginRequest,
   RegisterRequest,
   StartupRequest,
@@ -35,6 +37,15 @@ api.interceptors.request.use((config) => {
 export async function generateStartup(payload: StartupRequest) {
   const response = await api.post<StartupResponse>(
     "/generate-startup",
+    payload
+  );
+
+  return response.data;
+}
+
+export async function predictFutureFunding(payload: FutureFundingPredictionRequest) {
+  const response = await api.post<FutureFundingPredictionResponse>(
+    "/predictions/future-funding",
     payload
   );
 

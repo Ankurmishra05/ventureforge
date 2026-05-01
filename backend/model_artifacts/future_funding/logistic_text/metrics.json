@@ -1,0 +1,239 @@
+{
+  "model_name": "logistic_text",
+  "task": "future_funding",
+  "target_column": "model_target_future_funding",
+  "threshold_selection": {
+    "threshold": 0.26,
+    "precision": 0.4718,
+    "recall": 0.6046,
+    "f1": 0.53
+  },
+  "selected_threshold": 0.26,
+  "calibration_method": "isotonic",
+  "calibration_validation_scores": [
+    {
+      "method": "raw",
+      "validation_brier_score": 0.1647
+    },
+    {
+      "method": "sigmoid",
+      "validation_brier_score": 0.0824
+    },
+    {
+      "method": "isotonic",
+      "validation_brier_score": 0.0816
+    }
+  ],
+  "train_rows": 63583,
+  "validation_rows": 10183,
+  "test_rows": 14578,
+  "metrics": {
+    "positive_rate": 0.0663,
+    "predicted_positive_rate": 0.1729,
+    "roc_auc": 0.822,
+    "pr_auc": 0.2071,
+    "brier_score": 0.0692,
+    "precision": 0.2139,
+    "recall": 0.5574,
+    "f1": 0.3091,
+    "confusion_matrix": [
+      [
+        11630,
+        1981
+      ],
+      [
+        428,
+        539
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.9645048930170841,
+        "recall": 0.8544559547424877,
+        "f1-score": 0.9061513888347813,
+        "support": 13611.0
+      },
+      "1": {
+        "precision": 0.21388888888888888,
+        "recall": 0.5573940020682523,
+        "f1-score": 0.30914826498422715,
+        "support": 967.0
+      },
+      "accuracy": 0.8347509946494718,
+      "macro avg": {
+        "precision": 0.5891968909529864,
+        "recall": 0.70592497840537,
+        "f1-score": 0.6076498269095042,
+        "support": 14578.0
+      },
+      "weighted avg": {
+        "precision": 0.9147144090006234,
+        "recall": 0.8347509946494718,
+        "f1-score": 0.8665504819364764,
+        "support": 14578.0
+      }
+    }
+  },
+  "calibration_bins": [
+    {
+      "avg_predicted_probability": 0.0,
+      "observed_positive_rate": 0.0016
+    },
+    {
+      "avg_predicted_probability": 0.0093,
+      "observed_positive_rate": 0.0058
+    },
+    {
+      "avg_predicted_probability": 0.0179,
+      "observed_positive_rate": 0.0152
+    },
+    {
+      "avg_predicted_probability": 0.0498,
+      "observed_positive_rate": 0.0213
+    },
+    {
+      "avg_predicted_probability": 0.0818,
+      "observed_positive_rate": 0.0444
+    },
+    {
+      "avg_predicted_probability": 0.1046,
+      "observed_positive_rate": 0.0674
+    },
+    {
+      "avg_predicted_probability": 0.1978,
+      "observed_positive_rate": 0.0937
+    },
+    {
+      "avg_predicted_probability": 0.3216,
+      "observed_positive_rate": 0.1809
+    },
+    {
+      "avg_predicted_probability": 0.5612,
+      "observed_positive_rate": 0.243
+    }
+  ],
+  "top_positive_features": [
+    {
+      "feature": "categorical__category_medical",
+      "coefficient": 2.1454
+    },
+    {
+      "feature": "categorical__category_biotech",
+      "coefficient": 1.7213
+    },
+    {
+      "feature": "text__develops",
+      "coefficient": 1.6626
+    },
+    {
+      "feature": "text__provides",
+      "coefficient": 1.6399
+    },
+    {
+      "feature": "categorical__city_Redwood City",
+      "coefficient": 1.6018
+    },
+    {
+      "feature": "text__services",
+      "coefficient": 1.5503
+    },
+    {
+      "feature": "categorical__category_semiconductor",
+      "coefficient": 1.4627
+    },
+    {
+      "feature": "categorical__state_NY",
+      "coefficient": 1.4405
+    },
+    {
+      "feature": "text__operates",
+      "coefficient": 1.3516
+    },
+    {
+      "feature": "text__development",
+      "coefficient": 1.3455
+    },
+    {
+      "feature": "text__products",
+      "coefficient": 1.341
+    },
+    {
+      "feature": "text__payment",
+      "coefficient": 1.3385
+    },
+    {
+      "feature": "text__rewards",
+      "coefficient": 1.326
+    },
+    {
+      "feature": "categorical__category_analytics",
+      "coefficient": 1.3242
+    },
+    {
+      "feature": "text__is",
+      "coefficient": 1.2886
+    }
+  ],
+  "top_negative_features": [
+    {
+      "feature": "categorical__category_other",
+      "coefficient": -2.0377
+    },
+    {
+      "feature": "categorical__city_Brooklyn",
+      "coefficient": -1.945
+    },
+    {
+      "feature": "text__was",
+      "coefficient": -1.9292
+    },
+    {
+      "feature": "categorical__category_consulting",
+      "coefficient": -1.8692
+    },
+    {
+      "feature": "categorical__city_New York",
+      "coefficient": -1.8057
+    },
+    {
+      "feature": "categorical__country_ARE",
+      "coefficient": -1.6657
+    },
+    {
+      "feature": "categorical__country_ROM",
+      "coefficient": -1.6533
+    },
+    {
+      "feature": "categorical__category_legal",
+      "coefficient": -1.651
+    },
+    {
+      "feature": "categorical__category_local",
+      "coefficient": -1.5585
+    },
+    {
+      "feature": "text__social",
+      "coefficient": -1.4464
+    },
+    {
+      "feature": "categorical__category_search",
+      "coefficient": -1.3562
+    },
+    {
+      "feature": "categorical__state_DC",
+      "coefficient": -1.3119
+    },
+    {
+      "feature": "text__sharing",
+      "coefficient": -1.2939
+    },
+    {
+      "feature": "text__tools",
+      "coefficient": -1.274
+    },
+    {
+      "feature": "categorical__category_web",
+      "coefficient": -1.264
+    }
+  ]
+}

@@ -9,12 +9,31 @@ import { ErrorState } from "@/components/dashboard/error-state";
 import { LoadingState } from "@/components/dashboard/loading-state";
 import { ResultCard } from "@/components/dashboard/result-card";
 import { RevenueChart } from "@/components/dashboard/revenue-chart";
-import { clearAuthSession, generateStartup } from "@/lib/api";
-import type { StartupResponse } from "@/lib/types";
+import { clearAuthSession, generateStartup, predictFutureFunding } from "@/lib/api";
+import type {
+  FutureFundingPredictionResponse,
+  StartupResponse
+} from "@/lib/types";
 
 const initialForm = {
   idea: "",
   audience: ""
+};
+
+const initialPredictionForm = {
+  founded_year: "2010",
+  category: "enterprise",
+  country: "USA",
+  state: "CA",
+  city: "San Francisco",
+  description: "",
+  early_latest_round_type: "series_a",
+  early_num_funding_rounds: "1",
+  early_total_raised_usd: "1000000",
+  early_avg_raised_usd: "1000000",
+  early_max_raised_usd: "1000000",
+  early_avg_participants: "2",
+  early_max_participants: "2"
 };
 
 export function DashboardShell() {
@@ -25,6 +44,11 @@ export function DashboardShell() {
   const [error, setError] = useState<string | null>(null);
   const [requiresAuth, setRequiresAuth] = useState(false);
   const [result, setResult] = useState<StartupResponse | null>(null);
+  const [predictionForm, setPredictionForm] = useState(initialPredictionForm);
+  const [predictionResult, setPredictionResult] =
+    useState<FutureFundingPredictionResponse | null>(null);
+  const [predictionError, setPredictionError] = useState<string | null>(null);
+  const [isPredicting, setIsPredicting] = useState(false);
 
   function handleLogout() {
     clearAuthSession();
@@ -81,6 +105,48 @@ export function DashboardShell() {
 
   async function retryGeneration() {
     await runGeneration();
+  }
+
+  async function handlePredictionSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setPredictionError(null);
+    setPredictionResult(null);
+    setIsPredicting(true);
+
+    try {
+      const data = await predictFutureFunding({
+        founded_year: Number(predictionForm.founded_year),
+        category: predictionForm.category.trim(),
+        country: predictionForm.country.trim() || undefined,
+        state: predictionForm.state.trim() || undefined,
+        city: predictionForm.city.trim() || undefined,
+        description: predictionForm.description.trim(),
+        early_latest_round_type:
+          predictionForm.early_latest_round_type.trim() || undefined,
+        early_num_funding_rounds: Number(predictionForm.early_num_funding_rounds),
+        early_total_raised_usd: Number(predictionForm.early_total_raised_usd),
+        early_avg_raised_usd: Number(predictionForm.early_avg_raised_usd),
+        early_max_raised_usd: Number(predictionForm.early_max_raised_usd),
+        early_avg_participants: Number(predictionForm.early_avg_participants),
+        early_max_participants: Number(predictionForm.early_max_participants)
+      });
+
+      setPredictionResult(data);
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        const detail =
+          typeof err.response?.data === "string"
+            ? err.response.data
+            : typeof err.response?.data?.detail === "string"
+              ? err.response.data.detail
+              : "The prediction API is unavailable or returned an invalid response.";
+        setPredictionError(detail);
+      } else {
+        setPredictionError("Something unexpected happened while scoring the startup.");
+      }
+    } finally {
+      setIsPredicting(false);
+    }
   }
 
   async function exportPdf() {
@@ -211,6 +277,175 @@ export function DashboardShell() {
                 {isLoading ? "Generating..." : "Generate"}
               </button>
             </form>
+
+            <div className="mt-10 border-t border-white/10 pt-8">
+              <p className="text-sm uppercase tracking-[0.3em] text-accent">
+                ML Scoring
+              </p>
+              <h2 className="mt-4 font-display text-2xl font-semibold text-white">
+                Score future funding probability
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-slate-300">
+                Uses the trained Kaggle-based benchmark model with early-stage features.
+              </p>
+
+              <form className="mt-6 space-y-4" onSubmit={handlePredictionSubmit}>
+                <input
+                  value={predictionForm.description}
+                  onChange={(e) =>
+                    setPredictionForm((current) => ({
+                      ...current,
+                      description: e.target.value
+                    }))
+                  }
+                  placeholder="Company description"
+                  className="w-full rounded-3xl border border-white/10 bg-slate-950/70 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500"
+                />
+
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <input
+                    value={predictionForm.category}
+                    onChange={(e) =>
+                      setPredictionForm((current) => ({
+                        ...current,
+                        category: e.target.value
+                      }))
+                    }
+                    placeholder="Category"
+                    className="rounded-full border border-white/10 bg-slate-950/70 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500"
+                  />
+                  <input
+                    value={predictionForm.founded_year}
+                    onChange={(e) =>
+                      setPredictionForm((current) => ({
+                        ...current,
+                        founded_year: e.target.value
+                      }))
+                    }
+                    placeholder="Founded year"
+                    className="rounded-full border border-white/10 bg-slate-950/70 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500"
+                  />
+                  <input
+                    value={predictionForm.country}
+                    onChange={(e) =>
+                      setPredictionForm((current) => ({
+                        ...current,
+                        country: e.target.value
+                      }))
+                    }
+                    placeholder="Country"
+                    className="rounded-full border border-white/10 bg-slate-950/70 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500"
+                  />
+                  <input
+                    value={predictionForm.state}
+                    onChange={(e) =>
+                      setPredictionForm((current) => ({
+                        ...current,
+                        state: e.target.value
+                      }))
+                    }
+                    placeholder="State"
+                    className="rounded-full border border-white/10 bg-slate-950/70 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500"
+                  />
+                  <input
+                    value={predictionForm.city}
+                    onChange={(e) =>
+                      setPredictionForm((current) => ({
+                        ...current,
+                        city: e.target.value
+                      }))
+                    }
+                    placeholder="City"
+                    className="rounded-full border border-white/10 bg-slate-950/70 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500"
+                  />
+                  <input
+                    value={predictionForm.early_latest_round_type}
+                    onChange={(e) =>
+                      setPredictionForm((current) => ({
+                        ...current,
+                        early_latest_round_type: e.target.value
+                      }))
+                    }
+                    placeholder="Latest early round type"
+                    className="rounded-full border border-white/10 bg-slate-950/70 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500"
+                  />
+                  <input
+                    value={predictionForm.early_num_funding_rounds}
+                    onChange={(e) =>
+                      setPredictionForm((current) => ({
+                        ...current,
+                        early_num_funding_rounds: e.target.value
+                      }))
+                    }
+                    placeholder="Early rounds"
+                    className="rounded-full border border-white/10 bg-slate-950/70 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500"
+                  />
+                  <input
+                    value={predictionForm.early_total_raised_usd}
+                    onChange={(e) =>
+                      setPredictionForm((current) => ({
+                        ...current,
+                        early_total_raised_usd: e.target.value
+                      }))
+                    }
+                    placeholder="Early total raised USD"
+                    className="rounded-full border border-white/10 bg-slate-950/70 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500"
+                  />
+                  <input
+                    value={predictionForm.early_avg_raised_usd}
+                    onChange={(e) =>
+                      setPredictionForm((current) => ({
+                        ...current,
+                        early_avg_raised_usd: e.target.value
+                      }))
+                    }
+                    placeholder="Early average raised USD"
+                    className="rounded-full border border-white/10 bg-slate-950/70 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500"
+                  />
+                  <input
+                    value={predictionForm.early_max_raised_usd}
+                    onChange={(e) =>
+                      setPredictionForm((current) => ({
+                        ...current,
+                        early_max_raised_usd: e.target.value
+                      }))
+                    }
+                    placeholder="Early max raised USD"
+                    className="rounded-full border border-white/10 bg-slate-950/70 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500"
+                  />
+                  <input
+                    value={predictionForm.early_avg_participants}
+                    onChange={(e) =>
+                      setPredictionForm((current) => ({
+                        ...current,
+                        early_avg_participants: e.target.value
+                      }))
+                    }
+                    placeholder="Early average participants"
+                    className="rounded-full border border-white/10 bg-slate-950/70 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500"
+                  />
+                  <input
+                    value={predictionForm.early_max_participants}
+                    onChange={(e) =>
+                      setPredictionForm((current) => ({
+                        ...current,
+                        early_max_participants: e.target.value
+                      }))
+                    }
+                    placeholder="Early max participants"
+                    className="rounded-full border border-white/10 bg-slate-950/70 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isPredicting || !predictionForm.category.trim()}
+                  className="inline-flex w-full items-center justify-center rounded-full border border-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10 disabled:opacity-60"
+                >
+                  {isPredicting ? "Scoring..." : "Score Future Funding"}
+                </button>
+              </form>
+            </div>
           </motion.aside>
 
           <motion.section
@@ -351,7 +586,53 @@ export function DashboardShell() {
               </>
             )}
 
-            {!isLoading && !error && !result && (
+            {!isPredicting && predictionError && (
+              <div className="rounded-[1.5rem] border border-rose-500/20 bg-rose-500/10 p-5 text-sm text-rose-100">
+                {predictionError}
+              </div>
+            )}
+
+            {predictionResult && (
+              <div className="grid gap-6 2xl:grid-cols-[minmax(0,1fr)_320px]">
+                <ResultCard title="Future Funding Prediction" confidenceScore={Math.round(predictionResult.predicted_probability * 100)}>
+                  <div className="space-y-4 text-sm text-slate-200">
+                    <p className="text-3xl font-semibold text-white">
+                      {Math.round(predictionResult.predicted_probability * 100)}%
+                    </p>
+                    <p>
+                      Decision threshold: {Math.round(predictionResult.selected_threshold * 100)}%
+                    </p>
+                    <p>
+                      Model verdict: {predictionResult.predicted_label === 1 ? "Likely future funding" : "Below funding threshold"}
+                    </p>
+                    <p className="text-slate-400">
+                      Model: {predictionResult.model_version}
+                    </p>
+                  </div>
+                </ResultCard>
+
+                <ResultCard title="Top Drivers" confidenceScore={Math.round(predictionResult.predicted_probability * 100)}>
+                  <div className="space-y-3 text-sm text-slate-200">
+                    {predictionResult.explanation.map((item) => (
+                      <div
+                        key={item.feature}
+                        className="rounded-2xl border border-white/10 bg-slate-950/40 p-4"
+                      >
+                        <p className="font-semibold text-white">{item.feature}</p>
+                        <p className="mt-1 text-slate-300">
+                          {item.direction} score by about {Math.round(item.impact * 100)} points
+                        </p>
+                        <p className="mt-1 text-slate-500">
+                          Value: {String(item.value ?? "unknown")}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </ResultCard>
+              </div>
+            )}
+
+            {!isLoading && !error && !result && !predictionResult && (
               <div className="flex min-h-[520px] items-center justify-center rounded-[2rem] border border-dashed border-white/10 bg-white/[0.03] p-10 text-center">
                 <div className="max-w-xl">
                   <h2 className="text-3xl font-semibold text-white">

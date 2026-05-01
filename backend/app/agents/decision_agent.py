@@ -2,6 +2,7 @@ import json
 import re
 
 from app.services.llm import ask_llm
+from app.services.ml import predict_startup_signal
 
 
 def extract_json(text: str):
@@ -12,6 +13,18 @@ def extract_json(text: str):
 
 
 def run_decision_agent(idea: str, research: dict, finance: dict):
+    ml_signal = predict_startup_signal(idea, research.get("target_audience", "general users"))
+    ml_context = ""
+    if ml_signal is not None:
+        ml_context = f"""
+Baseline ML Signal:
+- Predicted Verdict: {ml_signal["predicted_verdict"]}
+- Predicted Risk Score: {ml_signal["predicted_risk_score"]}
+- Build Probability: {ml_signal["build_probability"]}
+- Pivot Probability: {ml_signal["pivot_probability"]}
+- Avoid Probability: {ml_signal["avoid_probability"]}
+"""
+
     prompt = f"""
 You are a world-class startup investor.
 
@@ -24,6 +37,7 @@ Market Need: {research.get("market_need")}
 Opportunity Score: {research.get("opportunity_score")}
 Business Model: {finance.get("business_model")}
 Revenue Projection: {finance.get("year1_revenue_projection")}
+{ml_context}
 
 Rules:
 - verdict must be BUILD or PIVOT or AVOID
@@ -55,6 +69,7 @@ Return JSON exactly in this format:
                 data.get("suggested_pivot", "Target a niche audience")
             ),
             "confidence_score": float(data.get("confidence_score", 80)),
+            "ml_signal": ml_signal,
         }
 
     except Exception:
@@ -76,4 +91,5 @@ Return JSON exactly in this format:
             "reason": "Heuristic evaluation based on market opportunity score.",
             "suggested_pivot": "Focus on a niche with urgent pain points.",
             "confidence_score": 78,
+            "ml_signal": ml_signal,
         }

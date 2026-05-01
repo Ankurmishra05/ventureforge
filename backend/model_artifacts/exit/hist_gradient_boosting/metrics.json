@@ -1,0 +1,107 @@
+{
+  "model_name": "hist_gradient_boosting",
+  "task": "exit",
+  "target_column": "model_target_exit",
+  "threshold_selection": {
+    "threshold": 0.08,
+    "precision": 0.1416,
+    "recall": 0.249,
+    "f1": 0.1805
+  },
+  "selected_threshold": 0.08,
+  "calibration_method": "isotonic",
+  "calibration_validation_scores": [
+    {
+      "method": "raw",
+      "validation_brier_score": 0.0237
+    },
+    {
+      "method": "sigmoid",
+      "validation_brier_score": 0.0231
+    },
+    {
+      "method": "isotonic",
+      "validation_brier_score": 0.0227
+    }
+  ],
+  "train_rows": 63583,
+  "validation_rows": 10183,
+  "test_rows": 14578,
+  "metrics": {
+    "positive_rate": 0.0158,
+    "predicted_positive_rate": 0.0203,
+    "roc_auc": 0.6852,
+    "pr_auc": 0.0416,
+    "brier_score": 0.0157,
+    "precision": 0.0811,
+    "recall": 0.1039,
+    "f1": 0.0911,
+    "confusion_matrix": [
+      [
+        14075,
+        272
+      ],
+      [
+        207,
+        24
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.9855062316202212,
+        "recall": 0.9810413326827908,
+        "f1-score": 0.9832687135422125,
+        "support": 14347.0
+      },
+      "1": {
+        "precision": 0.08108108108108109,
+        "recall": 0.1038961038961039,
+        "f1-score": 0.09108159392789374,
+        "support": 231.0
+      },
+      "accuracy": 0.967142269172726,
+      "macro avg": {
+        "precision": 0.5332936563506512,
+        "recall": 0.5424687182894473,
+        "f1-score": 0.5371751537350531,
+        "support": 14578.0
+      },
+      "weighted avg": {
+        "precision": 0.9711748960615341,
+        "recall": 0.967142269172726,
+        "f1-score": 0.9691312993131751,
+        "support": 14578.0
+      }
+    }
+  },
+  "calibration_bins": [
+    {
+      "avg_predicted_probability": 0.0029,
+      "observed_positive_rate": 0.0078
+    },
+    {
+      "avg_predicted_probability": 0.0086,
+      "observed_positive_rate": 0.0095
+    },
+    {
+      "avg_predicted_probability": 0.0119,
+      "observed_positive_rate": 0.0085
+    },
+    {
+      "avg_predicted_probability": 0.0186,
+      "observed_positive_rate": 0.0201
+    },
+    {
+      "avg_predicted_probability": 0.0326,
+      "observed_positive_rate": 0.0176
+    },
+    {
+      "avg_predicted_probability": 0.0379,
+      "observed_positive_rate": 0.031
+    },
+    {
+      "avg_predicted_probability": 0.083,
+      "observed_positive_rate": 0.0575
+    }
+  ]
+}

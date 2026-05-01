@@ -1,0 +1,231 @@
+{
+  "model_name": "logistic_text",
+  "task": "exit",
+  "target_column": "model_target_exit",
+  "threshold_selection": {
+    "threshold": 0.08,
+    "precision": 0.1494,
+    "recall": 0.2088,
+    "f1": 0.1742
+  },
+  "selected_threshold": 0.08,
+  "calibration_method": "isotonic",
+  "calibration_validation_scores": [
+    {
+      "method": "raw",
+      "validation_brier_score": 0.1363
+    },
+    {
+      "method": "sigmoid",
+      "validation_brier_score": 0.0231
+    },
+    {
+      "method": "isotonic",
+      "validation_brier_score": 0.0229
+    }
+  ],
+  "train_rows": 63583,
+  "validation_rows": 10183,
+  "test_rows": 14578,
+  "metrics": {
+    "positive_rate": 0.0158,
+    "predicted_positive_rate": 0.0316,
+    "roc_auc": 0.6721,
+    "pr_auc": 0.0374,
+    "brier_score": 0.0157,
+    "precision": 0.0674,
+    "recall": 0.1342,
+    "f1": 0.0897,
+    "confusion_matrix": [
+      [
+        13918,
+        429
+      ],
+      [
+        200,
+        31
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.9858336874911461,
+        "recall": 0.9700982783857253,
+        "f1-score": 0.9779026875109784,
+        "support": 14347.0
+      },
+      "1": {
+        "precision": 0.06739130434782609,
+        "recall": 0.1341991341991342,
+        "f1-score": 0.08972503617945007,
+        "support": 231.0
+      },
+      "accuracy": 0.9568527918781726,
+      "macro avg": {
+        "precision": 0.5266124959194861,
+        "recall": 0.5521487062924297,
+        "f1-score": 0.5338138618452143,
+        "support": 14578.0
+      },
+      "weighted avg": {
+        "precision": 0.9712802377376747,
+        "recall": 0.9568527918781726,
+        "f1-score": 0.9638288064945438,
+        "support": 14578.0
+      }
+    }
+  },
+  "calibration_bins": [
+    {
+      "avg_predicted_probability": 0.0,
+      "observed_positive_rate": 0.0068
+    },
+    {
+      "avg_predicted_probability": 0.0093,
+      "observed_positive_rate": 0.0088
+    },
+    {
+      "avg_predicted_probability": 0.0097,
+      "observed_positive_rate": 0.0094
+    },
+    {
+      "avg_predicted_probability": 0.0179,
+      "observed_positive_rate": 0.0137
+    },
+    {
+      "avg_predicted_probability": 0.0274,
+      "observed_positive_rate": 0.0162
+    },
+    {
+      "avg_predicted_probability": 0.0372,
+      "observed_positive_rate": 0.0295
+    },
+    {
+      "avg_predicted_probability": 0.1078,
+      "observed_positive_rate": 0.0502
+    }
+  ],
+  "top_positive_features": [
+    {
+      "feature": "text__service",
+      "coefficient": 2.1513
+    },
+    {
+      "feature": "text__personalized",
+      "coefficient": 2.1074
+    },
+    {
+      "feature": "text__clients",
+      "coefficient": 2.0113
+    },
+    {
+      "feature": "text__internet",
+      "coefficient": 1.9456
+    },
+    {
+      "feature": "text__websites",
+      "coefficient": 1.9356
+    },
+    {
+      "feature": "text__website",
+      "coefficient": 1.916
+    },
+    {
+      "feature": "text__providing",
+      "coefficient": 1.9026
+    },
+    {
+      "feature": "text__photos",
+      "coefficient": 1.8226
+    },
+    {
+      "feature": "text__fans",
+      "coefficient": 1.7819
+    },
+    {
+      "feature": "text__employee",
+      "coefficient": 1.7703
+    },
+    {
+      "feature": "text__school",
+      "coefficient": 1.7467
+    },
+    {
+      "feature": "text__medical devices",
+      "coefficient": 1.7178
+    },
+    {
+      "feature": "categorical__category_semiconductor",
+      "coefficient": 1.7156
+    },
+    {
+      "feature": "text__used in",
+      "coefficient": 1.7077
+    },
+    {
+      "feature": "text__line",
+      "coefficient": 1.6723
+    }
+  ],
+  "top_negative_features": [
+    {
+      "feature": "categorical__category_legal",
+      "coefficient": -2.5908
+    },
+    {
+      "feature": "categorical__category_local",
+      "coefficient": -2.5281
+    },
+    {
+      "feature": "categorical__country_POL",
+      "coefficient": -2.5203
+    },
+    {
+      "feature": "categorical__country_ROM",
+      "coefficient": -2.4474
+    },
+    {
+      "feature": "text__platform",
+      "coefficient": -1.8953
+    },
+    {
+      "feature": "text__system",
+      "coefficient": -1.8626
+    },
+    {
+      "feature": "categorical__country_TUR",
+      "coefficient": -1.835
+    },
+    {
+      "feature": "categorical__category_infrequent_sklearn",
+      "coefficient": -1.7043
+    },
+    {
+      "feature": "text__solution",
+      "coefficient": -1.6907
+    },
+    {
+      "feature": "text__and mobile",
+      "coefficient": -1.6809
+    },
+    {
+      "feature": "text__by",
+      "coefficient": -1.5931
+    },
+    {
+      "feature": "text__with",
+      "coefficient": -1.5519
+    },
+    {
+      "feature": "text__build",
+      "coefficient": -1.4175
+    },
+    {
+      "feature": "text__social media",
+      "coefficient": -1.3939
+    },
+    {
+      "feature": "text__pharmaceutical",
+      "coefficient": -1.3414
+    }
+  ]
+}

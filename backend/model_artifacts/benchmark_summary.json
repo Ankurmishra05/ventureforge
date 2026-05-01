@@ -1,0 +1,378 @@
+{
+  "exit": {
+    "target_column": "model_target_exit",
+    "temporal_split_year": 2010,
+    "train_year_range": [
+      1901,
+      2010
+    ],
+    "test_year_range": [
+      2011,
+      2012
+    ],
+    "models": [
+      {
+        "model_name": "logistic_text",
+        "selected_threshold": 0.08,
+        "metrics": {
+          "positive_rate": 0.0158,
+          "predicted_positive_rate": 0.0316,
+          "roc_auc": 0.6721,
+          "pr_auc": 0.0374,
+          "brier_score": 0.0157,
+          "precision": 0.0674,
+          "recall": 0.1342,
+          "f1": 0.0897,
+          "confusion_matrix": [
+            [
+              13918,
+              429
+            ],
+            [
+              200,
+              31
+            ]
+          ],
+          "classification_report": {
+            "0": {
+              "precision": 0.9858336874911461,
+              "recall": 0.9700982783857253,
+              "f1-score": 0.9779026875109784,
+              "support": 14347.0
+            },
+            "1": {
+              "precision": 0.06739130434782609,
+              "recall": 0.1341991341991342,
+              "f1-score": 0.08972503617945007,
+              "support": 231.0
+            },
+            "accuracy": 0.9568527918781726,
+            "macro avg": {
+              "precision": 0.5266124959194861,
+              "recall": 0.5521487062924297,
+              "f1-score": 0.5338138618452143,
+              "support": 14578.0
+            },
+            "weighted avg": {
+              "precision": 0.9712802377376747,
+              "recall": 0.9568527918781726,
+              "f1-score": 0.9638288064945438,
+              "support": 14578.0
+            }
+          }
+        },
+        "artifacts": {
+          "model": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\exit\\logistic_text\\model.joblib",
+          "metrics": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\exit\\logistic_text\\metrics.json",
+          "pr_curve": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\exit\\logistic_text\\pr_curve.csv",
+          "predictions": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\exit\\logistic_text\\holdout_predictions.csv",
+          "slice_analysis": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\exit\\logistic_text\\slice_analysis.json"
+        }
+      },
+      {
+        "model_name": "hist_gradient_boosting",
+        "selected_threshold": 0.08,
+        "metrics": {
+          "positive_rate": 0.0158,
+          "predicted_positive_rate": 0.0203,
+          "roc_auc": 0.6852,
+          "pr_auc": 0.0416,
+          "brier_score": 0.0157,
+          "precision": 0.0811,
+          "recall": 0.1039,
+          "f1": 0.0911,
+          "confusion_matrix": [
+            [
+              14075,
+              272
+            ],
+            [
+              207,
+              24
+            ]
+          ],
+          "classification_report": {
+            "0": {
+              "precision": 0.9855062316202212,
+              "recall": 0.9810413326827908,
+              "f1-score": 0.9832687135422125,
+              "support": 14347.0
+            },
+            "1": {
+              "precision": 0.08108108108108109,
+              "recall": 0.1038961038961039,
+              "f1-score": 0.09108159392789374,
+              "support": 231.0
+            },
+            "accuracy": 0.967142269172726,
+            "macro avg": {
+              "precision": 0.5332936563506512,
+              "recall": 0.5424687182894473,
+              "f1-score": 0.5371751537350531,
+              "support": 14578.0
+            },
+            "weighted avg": {
+              "precision": 0.9711748960615341,
+              "recall": 0.967142269172726,
+              "f1-score": 0.9691312993131751,
+              "support": 14578.0
+            }
+          }
+        },
+        "artifacts": {
+          "model": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\exit\\hist_gradient_boosting\\model.joblib",
+          "metrics": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\exit\\hist_gradient_boosting\\metrics.json",
+          "pr_curve": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\exit\\hist_gradient_boosting\\pr_curve.csv",
+          "predictions": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\exit\\hist_gradient_boosting\\holdout_predictions.csv",
+          "slice_analysis": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\exit\\hist_gradient_boosting\\slice_analysis.json"
+        }
+      },
+      {
+        "model_name": "xgboost",
+        "selected_threshold": 0.08,
+        "metrics": {
+          "positive_rate": 0.0158,
+          "predicted_positive_rate": 0.0228,
+          "roc_auc": 0.6856,
+          "pr_auc": 0.0441,
+          "brier_score": 0.0155,
+          "precision": 0.0901,
+          "recall": 0.1299,
+          "f1": 0.1064,
+          "confusion_matrix": [
+            [
+              14044,
+              303
+            ],
+            [
+              201,
+              30
+            ]
+          ],
+          "classification_report": {
+            "0": {
+              "precision": 0.9858897858897859,
+              "recall": 0.9788806022164912,
+              "f1-score": 0.9823726916620034,
+              "support": 14347.0
+            },
+            "1": {
+              "precision": 0.09009009009009009,
+              "recall": 0.12987012987012986,
+              "f1-score": 0.10638297872340426,
+              "support": 231.0
+            },
+            "accuracy": 0.9654273562903004,
+            "macro avg": {
+              "precision": 0.537989937989938,
+              "recall": 0.5543753660433105,
+              "f1-score": 0.5443778351927038,
+              "support": 14578.0
+            },
+            "weighted avg": {
+              "precision": 0.9716951275189716,
+              "recall": 0.9654273562903004,
+              "f1-score": 0.9684919382192255,
+              "support": 14578.0
+            }
+          }
+        },
+        "artifacts": {
+          "model": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\exit\\xgboost\\model.joblib",
+          "metrics": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\exit\\xgboost\\metrics.json",
+          "pr_curve": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\exit\\xgboost\\pr_curve.csv",
+          "predictions": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\exit\\xgboost\\holdout_predictions.csv",
+          "slice_analysis": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\exit\\xgboost\\slice_analysis.json"
+        }
+      }
+    ]
+  },
+  "future_funding": {
+    "target_column": "model_target_future_funding",
+    "temporal_split_year": 2010,
+    "train_year_range": [
+      1901,
+      2010
+    ],
+    "test_year_range": [
+      2011,
+      2012
+    ],
+    "models": [
+      {
+        "model_name": "logistic_text",
+        "selected_threshold": 0.26,
+        "metrics": {
+          "positive_rate": 0.0663,
+          "predicted_positive_rate": 0.1729,
+          "roc_auc": 0.822,
+          "pr_auc": 0.2071,
+          "brier_score": 0.0692,
+          "precision": 0.2139,
+          "recall": 0.5574,
+          "f1": 0.3091,
+          "confusion_matrix": [
+            [
+              11630,
+              1981
+            ],
+            [
+              428,
+              539
+            ]
+          ],
+          "classification_report": {
+            "0": {
+              "precision": 0.9645048930170841,
+              "recall": 0.8544559547424877,
+              "f1-score": 0.9061513888347813,
+              "support": 13611.0
+            },
+            "1": {
+              "precision": 0.21388888888888888,
+              "recall": 0.5573940020682523,
+              "f1-score": 0.30914826498422715,
+              "support": 967.0
+            },
+            "accuracy": 0.8347509946494718,
+            "macro avg": {
+              "precision": 0.5891968909529864,
+              "recall": 0.70592497840537,
+              "f1-score": 0.6076498269095042,
+              "support": 14578.0
+            },
+            "weighted avg": {
+              "precision": 0.9147144090006234,
+              "recall": 0.8347509946494718,
+              "f1-score": 0.8665504819364764,
+              "support": 14578.0
+            }
+          }
+        },
+        "artifacts": {
+          "model": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\future_funding\\logistic_text\\model.joblib",
+          "metrics": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\future_funding\\logistic_text\\metrics.json",
+          "pr_curve": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\future_funding\\logistic_text\\pr_curve.csv",
+          "predictions": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\future_funding\\logistic_text\\holdout_predictions.csv",
+          "slice_analysis": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\future_funding\\logistic_text\\slice_analysis.json"
+        }
+      },
+      {
+        "model_name": "hist_gradient_boosting",
+        "selected_threshold": 0.26,
+        "metrics": {
+          "positive_rate": 0.0663,
+          "predicted_positive_rate": 0.1732,
+          "roc_auc": 0.8458,
+          "pr_auc": 0.3179,
+          "brier_score": 0.0561,
+          "precision": 0.2364,
+          "recall": 0.6174,
+          "f1": 0.3419,
+          "confusion_matrix": [
+            [
+              11683,
+              1928
+            ],
+            [
+              370,
+              597
+            ]
+          ],
+          "classification_report": {
+            "0": {
+              "precision": 0.9693022484028873,
+              "recall": 0.8583498640805232,
+              "f1-score": 0.910458229426434,
+              "support": 13611.0
+            },
+            "1": {
+              "precision": 0.23643564356435642,
+              "recall": 0.6173733195449845,
+              "f1-score": 0.34192439862542956,
+              "support": 967.0
+            },
+            "accuracy": 0.8423652078474414,
+            "macro avg": {
+              "precision": 0.6028689459836218,
+              "recall": 0.7378615918127538,
+              "f1-score": 0.6261913140259318,
+              "support": 14578.0
+            },
+            "weighted avg": {
+              "precision": 0.9206891322772968,
+              "recall": 0.8423652078474414,
+              "f1-score": 0.8727457713125245,
+              "support": 14578.0
+            }
+          }
+        },
+        "artifacts": {
+          "model": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\future_funding\\hist_gradient_boosting\\model.joblib",
+          "metrics": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\future_funding\\hist_gradient_boosting\\metrics.json",
+          "pr_curve": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\future_funding\\hist_gradient_boosting\\pr_curve.csv",
+          "predictions": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\future_funding\\hist_gradient_boosting\\holdout_predictions.csv",
+          "slice_analysis": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\future_funding\\hist_gradient_boosting\\slice_analysis.json"
+        }
+      },
+      {
+        "model_name": "xgboost",
+        "selected_threshold": 0.27,
+        "metrics": {
+          "positive_rate": 0.0663,
+          "predicted_positive_rate": 0.123,
+          "roc_auc": 0.848,
+          "pr_auc": 0.3211,
+          "brier_score": 0.0559,
+          "precision": 0.2705,
+          "recall": 0.5016,
+          "f1": 0.3514,
+          "confusion_matrix": [
+            [
+              12303,
+              1308
+            ],
+            [
+              482,
+              485
+            ]
+          ],
+          "classification_report": {
+            "0": {
+              "precision": 0.9622995698083692,
+              "recall": 0.9039012563367864,
+              "f1-score": 0.9321866949537809,
+              "support": 13611.0
+            },
+            "1": {
+              "precision": 0.2704963747908533,
+              "recall": 0.5015511892450879,
+              "f1-score": 0.35144927536231885,
+              "support": 967.0
+            },
+            "accuracy": 0.877212237618329,
+            "macro avg": {
+              "precision": 0.6163979722996112,
+              "recall": 0.7027262227909372,
+              "f1-score": 0.6418179851580499,
+              "support": 14578.0
+            },
+            "weighted avg": {
+              "precision": 0.9164103058776559,
+              "recall": 0.877212237618329,
+              "f1-score": 0.893664738255678,
+              "support": 14578.0
+            }
+          }
+        },
+        "artifacts": {
+          "model": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\future_funding\\xgboost\\model.joblib",
+          "metrics": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\future_funding\\xgboost\\metrics.json",
+          "pr_curve": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\future_funding\\xgboost\\pr_curve.csv",
+          "predictions": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\future_funding\\xgboost\\holdout_predictions.csv",
+          "slice_analysis": "C:\\Users\\admin\\Desktop\\ventureforge\\backend\\model_artifacts\\future_funding\\xgboost\\slice_analysis.json"
+        }
+      }
+    ]
+  }
+}

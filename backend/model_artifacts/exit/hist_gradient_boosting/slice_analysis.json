@@ -1,0 +1,176 @@
+{
+  "category": [
+    {
+      "slice": "web",
+      "rows": 2295,
+      "positive_rate": 0.0192,
+      "precision": 0.1028,
+      "recall": 0.25,
+      "avg_predicted_probability": 0.0255
+    },
+    {
+      "slice": "software",
+      "rows": 2046,
+      "positive_rate": 0.0166,
+      "precision": 0.0541,
+      "recall": 0.0588,
+      "avg_predicted_probability": 0.0223
+    },
+    {
+      "slice": "ecommerce",
+      "rows": 1456,
+      "positive_rate": 0.0137,
+      "precision": 0.0,
+      "recall": 0.0,
+      "avg_predicted_probability": 0.0139
+    },
+    {
+      "slice": "mobile",
+      "rows": 1201,
+      "positive_rate": 0.0208,
+      "precision": 0.1429,
+      "recall": 0.24,
+      "avg_predicted_probability": 0.026
+    },
+    {
+      "slice": "other",
+      "rows": 1133,
+      "positive_rate": 0.0071,
+      "precision": 0.0,
+      "recall": 0.0,
+      "avg_predicted_probability": 0.007
+    },
+    {
+      "slice": "games_video",
+      "rows": 838,
+      "positive_rate": 0.0072,
+      "precision": 0.0,
+      "recall": 0.0,
+      "avg_predicted_probability": 0.0174
+    },
+    {
+      "slice": "advertising",
+      "rows": 733,
+      "positive_rate": 0.0191,
+      "precision": 0.1667,
+      "recall": 0.0714,
+      "avg_predicted_probability": 0.0123
+    },
+    {
+      "slice": "enterprise",
+      "rows": 552,
+      "positive_rate": 0.0163,
+      "precision": 0.0,
+      "recall": 0.0,
+      "avg_predicted_probability": 0.0255
+    },
+    {
+      "slice": "education",
+      "rows": 437,
+      "positive_rate": 0.0114,
+      "precision": 0.0,
+      "recall": 0.0,
+      "avg_predicted_probability": 0.012
+    },
+    {
+      "slice": "consulting",
+      "rows": 377,
+      "positive_rate": 0.008,
+      "precision": 0.0,
+      "recall": 0.0,
+      "avg_predicted_probability": 0.0039
+    }
+  ],
+  "country": [
+    {
+      "slice": "USA",
+      "rows": 5529,
+      "positive_rate": 0.0253,
+      "precision": 0.0815,
+      "recall": 0.1571,
+      "avg_predicted_probability": 0.0339
+    },
+    {
+      "slice": "unknown",
+      "rows": 4619,
+      "positive_rate": 0.0095,
+      "precision": 0.125,
+      "recall": 0.0227,
+      "avg_predicted_probability": 0.008
+    },
+    {
+      "slice": "GBR",
+      "rows": 746,
+      "positive_rate": 0.0147,
+      "precision": 0.3333,
+      "recall": 0.0909,
+      "avg_predicted_probability": 0.0142
+    },
+    {
+      "slice": "IND",
+      "rows": 527,
+      "positive_rate": 0.0076,
+      "precision": 0.0,
+      "recall": 0.0,
+      "avg_predicted_probability": 0.0034
+    },
+    {
+      "slice": "CAN",
+      "rows": 377,
+      "positive_rate": 0.0186,
+      "precision": 0.0,
+      "recall": 0.0,
+      "avg_predicted_probability": 0.0222
+    },
+    {
+      "slice": "DEU",
+      "rows": 245,
+      "positive_rate": 0.0204,
+      "precision": 0.0,
+      "recall": 0.0,
+      "avg_predicted_probability": 0.0194
+    },
+    {
+      "slice": "AUS",
+      "rows": 182,
+      "positive_rate": 0.0055,
+      "precision": 0.0,
+      "recall": 0.0,
+      "avg_predicted_probability": 0.0145
+    },
+    {
+      "slice": "ESP",
+      "rows": 178,
+      "positive_rate": 0.0056,
+      "precision": 0.0,
+      "recall": 0.0,
+      "avg_predicted_probability": 0.0114
+    },
+    {
+      "slice": "FRA",
+      "rows": 173,
+      "positive_rate": 0.0116,
+      "precision": 0.0,
+      "recall": 0.0,
+      "avg_predicted_probability": 0.0125
+    },
+    {
+      "slice": "ISR",
+      "rows": 144,
+      "positive_rate": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "avg_predicted_probability": 0.0167
+    }
+  ],
+  "founded_year_bucket": [
+    {
+      "slice": "2011-2012",
+      "rows": 14578,
+      "positive_rate": 0.0158,
+      "precision": 0.0811,
+      "recall": 0.1039,
+      "avg_predicted_probability": 0.0194
+    }
+  ]
+}

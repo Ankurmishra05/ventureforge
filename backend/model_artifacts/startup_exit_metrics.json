@@ -1,0 +1,207 @@
+{
+  "dataset_path": "C:\\Users\\admin\\Desktop\\ventureforge\\data\\processed\\startup_company_features.csv",
+  "task": "predict_successful_exit_from_early_stage_signals",
+  "target_column": "model_target_exit",
+  "train_rows": 63583,
+  "test_rows": 14578,
+  "temporal_split_year": 2010,
+  "train_year_range": [
+    1901,
+    2010
+  ],
+  "test_year_range": [
+    2011,
+    2012
+  ],
+  "features": {
+    "numeric": [
+      "founded_year",
+      "description_length",
+      "early_num_funding_rounds",
+      "early_total_raised_usd",
+      "early_avg_raised_usd",
+      "early_max_raised_usd",
+      "early_avg_participants",
+      "early_max_participants"
+    ],
+    "categorical": [
+      "category",
+      "country",
+      "state",
+      "city",
+      "early_latest_round_type"
+    ],
+    "text": "description"
+  },
+  "metrics": {
+    "positive_rate": 0.0158,
+    "predicted_positive_rate": 0.1553,
+    "roc_auc": 0.676,
+    "pr_auc": 0.0433,
+    "brier_score": 0.1267,
+    "precision": 0.0389,
+    "recall": 0.381,
+    "f1": 0.0705,
+    "confusion_matrix": [
+      [
+        12171,
+        2176
+      ],
+      [
+        143,
+        88
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.9883872015592009,
+        "recall": 0.8483306614623266,
+        "f1-score": 0.9130190165410149,
+        "support": 14347.0
+      },
+      "1": {
+        "precision": 0.038869257950530034,
+        "recall": 0.38095238095238093,
+        "f1-score": 0.07054108216432865,
+        "support": 231.0
+      },
+      "accuracy": 0.8409246810262039,
+      "macro avg": {
+        "precision": 0.5136282297548654,
+        "recall": 0.6146415212073537,
+        "f1-score": 0.4917800493526718,
+        "support": 14578.0
+      },
+      "weighted avg": {
+        "precision": 0.973341334844041,
+        "recall": 0.8409246810262039,
+        "f1-score": 0.8996692838725409,
+        "support": 14578.0
+      }
+    }
+  },
+  "top_positive_features": [
+    {
+      "feature": "text__service",
+      "coefficient": 2.1513
+    },
+    {
+      "feature": "text__personalized",
+      "coefficient": 2.1074
+    },
+    {
+      "feature": "text__clients",
+      "coefficient": 2.0113
+    },
+    {
+      "feature": "text__internet",
+      "coefficient": 1.9456
+    },
+    {
+      "feature": "text__websites",
+      "coefficient": 1.9356
+    },
+    {
+      "feature": "text__website",
+      "coefficient": 1.916
+    },
+    {
+      "feature": "text__providing",
+      "coefficient": 1.9026
+    },
+    {
+      "feature": "text__photos",
+      "coefficient": 1.8226
+    },
+    {
+      "feature": "text__fans",
+      "coefficient": 1.7819
+    },
+    {
+      "feature": "text__employee",
+      "coefficient": 1.7703
+    },
+    {
+      "feature": "text__school",
+      "coefficient": 1.7467
+    },
+    {
+      "feature": "text__medical devices",
+      "coefficient": 1.7178
+    },
+    {
+      "feature": "categorical__category_semiconductor",
+      "coefficient": 1.7156
+    },
+    {
+      "feature": "text__used in",
+      "coefficient": 1.7077
+    },
+    {
+      "feature": "text__line",
+      "coefficient": 1.6723
+    }
+  ],
+  "top_negative_features": [
+    {
+      "feature": "categorical__category_legal",
+      "coefficient": -2.5908
+    },
+    {
+      "feature": "categorical__category_local",
+      "coefficient": -2.5281
+    },
+    {
+      "feature": "categorical__country_POL",
+      "coefficient": -2.5203
+    },
+    {
+      "feature": "categorical__country_ROM",
+      "coefficient": -2.4474
+    },
+    {
+      "feature": "text__platform",
+      "coefficient": -1.8953
+    },
+    {
+      "feature": "text__system",
+      "coefficient": -1.8626
+    },
+    {
+      "feature": "categorical__country_TUR",
+      "coefficient": -1.835
+    },
+    {
+      "feature": "categorical__category_infrequent_sklearn",
+      "coefficient": -1.7043
+    },
+    {
+      "feature": "text__solution",
+      "coefficient": -1.6907
+    },
+    {
+      "feature": "text__and mobile",
+      "coefficient": -1.6809
+    },
+    {
+      "feature": "text__by",
+      "coefficient": -1.5931
+    },
+    {
+      "feature": "text__with",
+      "coefficient": -1.5519
+    },
+    {
+      "feature": "text__build",
+      "coefficient": -1.4175
+    },
+    {
+      "feature": "text__social media",
+      "coefficient": -1.3939
+    },
+    {
+      "feature": "text__pharmaceutical",
+      "coefficient": -1.3414
+    }
+  ]
+}

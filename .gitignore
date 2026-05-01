@@ -27,6 +27,11 @@ node_modules/
 .next/
 dist/
 build/
+*.tsbuildinfo
 
 # Misc
 .env.*
+
+# Large raw datasets
+data/raw/startup-investments/*.csv
+data/processed/startup_company_features.csv
