@@ -184,17 +184,3 @@ Verified locally in this workspace:
 - frontend TypeScript check passed
 
 Next.js `build` and `dev` process startup were blocked in this environment by Windows sandbox `spawn EPERM`, so browser-level verification was partially environment-limited rather than code-limited.
-
-## CV Positioning
-
-Good positioning:
-
-- `Hybrid GenAI + ML startup intelligence platform`
-- `Multi-agent LLM workflow with calibrated startup outcome prediction`
-- `Full-stack ML product with temporal benchmarking and model serving`
-
-Avoid overstating it as:
-
-- fully autonomous agent system
-- production-grade AGI agent
-- state-of-the-art startup prediction engine
